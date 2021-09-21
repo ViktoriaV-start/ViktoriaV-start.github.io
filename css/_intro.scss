@@ -1,0 +1,61 @@
+.intro__wrapper {
+  background: $e8-grey;
+}
+
+.intro {
+  background-image: url(../img/boy.jpg);
+  overflow: hidden;
+}
+
+
+.intro__text {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 309px;
+  margin-top: 221px;
+}
+
+.intro__text1,
+.intro__text2 {
+  display: block;
+}
+
+.intro__text::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 69px;
+  background: #F16D7F;
+  position: absolute;
+  left: 0;
+  top: 7px;
+  bottom: 0;
+}
+
+.intro__text1 {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 0;
+}
+
+.intro__text2 {
+  color: #222222;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.intro__text3 {
+  margin-left: 9px;
+  color: #F16D7F;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0em;
+  text-align: left;
+}

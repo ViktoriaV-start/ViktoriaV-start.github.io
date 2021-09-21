@@ -1,0 +1,169 @@
+.promo {
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+  &__header {
+    font-size: 30px;
+    color: $main-color;
+    font-weight: bold;
+    line-height: 1.8;
+    display: block;
+    text-align: center;
+  }
+  &__text {
+    display: block;
+    font-size: 14px;
+    color: $f9-gray;
+    text-align: center;
+    margin-bottom: 58px;
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(4, 22.75%);
+    grid-column-gap: 3%;
+  }
+  &__form {
+    margin-top: 19px;
+    align-self: center;
+  }
+  &__btn {
+    height: 48px;
+    width: 212px;
+    font-size: 16px;
+    color: $white;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    background-color: $special-color;
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: $special_dark;
+      box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.16);
+    }
+  }
+  &__arrow {
+    color: white;
+    font-family: 'Font Awesome 5 Free', 'Font Awesome 5 Brands';
+    margin-left: 15px;
+  }
+  &__card {
+    position: relative;
+    margin-bottom: 39px;
+    &:hover {
+      background-color: $white;
+      box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.16);
+    }
+    &:hover .promo__card-hover,
+    &:hover .promo__cart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__caption {
+    margin-top: 16px;
+    margin-bottom: 20px;
+    margin-left: 16px;
+  }
+  &__name {
+    font-size: 13px;
+    color: $main-color;
+    text-transform: uppercase;
+    text-align: left;
+    padding-bottom: 16px;
+  }
+  &__price {
+    font-size: 16px;
+    color: $special-color;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  &__card-hover {
+    position: absolute;
+    background-color: rgba(58, 56, 56, 0.831);
+    top: 0;
+    bottom: 81px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 1.5;
+    display: none;
+  }
+  &__cart {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    top: 98px;
+    left: 71px;
+    z-index: 2;
+    width: 122px;
+    border: 1px solid #fff;
+    padding: 5px;
+    cursor: pointer;
+    &:active {
+      background-color: $special-color;
+    }
+  }
+  &__add-to-cart {
+    font-size: 13px;
+    color: white;
+    padding-left: 8px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
