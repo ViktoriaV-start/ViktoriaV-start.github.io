@@ -5,8 +5,9 @@ $dark-grey:  rgb(164, 164, 164);
 $light-grey: #eee;
 $ea-grey: #eaeaea;
 $e8-grey: #e8e8e8;
-$d6-gray: #d6d6d6;
-$f9-gray: #9f9f9f;
+$d6-grey: #d6d6d6;
+$f9-grey: #9f9f9f;
+$grey: #636363;
 $white: #fff;
 $border-light: 1px solid #eee;
 
@@ -40,6 +41,7 @@ body {
 @import 'offer.scss';
 @import 'communication.scss';
 @import 'footer.scss';
+@import 'arrivals.scss';
 
 .poster_margin {
   margin-top: 98px;

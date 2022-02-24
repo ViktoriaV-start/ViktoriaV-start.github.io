@@ -130,25 +130,46 @@ class Cart extends Catalog {
         let find = this.allProducts.find(el => el.id_product === product.id_product);
         if (find) {
             find.changeQuantity(1);
+            this.updateCart();
             return;
         }
 
         let prod = Object.assign({ quantity: 1 }, product); //объединение двух объектов (первый - новый, второй - из которого вытаскиваются данные в новый)
         this.handleData([prod]); // метод handleData принимает МАССИВ с данными товаров, здесь передаем массив с одним товаров
-
-        //document.querySelector('.total').textContent = `$${this.calcTotal()}`;
+        this.updateCart();
     }
+
+    calcQuantity() {
+        return this.allProducts.reduce((accum, item) => accum += item.quantity, 0);
+    }
+
+    updateCart() {
+        
+        let newQuantity = this.calcQuantity();
+        if (newQuantity == 0) {
+            document.querySelector('.header__cart-quantity').classList.add('display-none');
+            document.querySelector(this.container).parentNode.classList.add('display-none');
+        } else {
+            document.querySelector('.header__cart-quantity').classList.remove('display-none');
+            document.querySelector('.header__cart-quantity').textContent = newQuantity;
+        }
+    }
+
 
     _init() {
         document.querySelector(this.container).addEventListener('click', e => {
 
 //УДАЛЕНИЕ ПОЛНОСТЬЮ ТОВАРА КНОПКОЙ
+            
+
             if (e.target.classList.contains('cart__dlt')) {
                 const id = +e.target.dataset['id'];
                 this.removeMarkUp(id);
                 let item = this.getItem(id);
                 this.allProducts.splice(this.allProducts.indexOf(item), 1);
-                //this.updateTotal();
+                console.log(this.allProducts);
+                this.updateCart();
+                
             }
 
 //ИЗМЕНЕНИЕ КОЛИЧЕСТВА ТОВАРА ЧЕРЕЗ КНОПКУ В КОРЗИНЕ
@@ -157,14 +178,14 @@ class Cart extends Catalog {
                 const id = +e.target.dataset['id'];
                 let item = this.getItem(id);
                 this.deleteItem(item);
-                //this.updateTotal();
+                this.updateCart();
             }
 
             if (e.target.classList.contains('quantityPlus')) {
                 const id = +e.target.dataset['id'];
                 let item = this.getItem(id);
                 item.changeQuantity(1);
-                //this.updateTotal();
+                this.updateCart();
             }
         });
 //
