@@ -12,7 +12,7 @@ export const Cart = {
     data() {
         return{
             cartUrl: '/cartPage.json',
-            imgCart: '/img2/card',
+            imgCart: 'img2/card',
             cartItems: [],
             totalQuantity: 7
         }

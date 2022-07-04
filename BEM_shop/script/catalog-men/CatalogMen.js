@@ -12,7 +12,7 @@ export const CatalogMen = {
         return {
             catalogUrl: '/menPage.json',
             allProducts: [],
-            imgCatalog: '/img1/card', // или './img1/card'
+            imgCatalog: 'img1/card', // или './img1/card'
             heartShow: false,
             emptyCatalog: false,
             searchSize: false
