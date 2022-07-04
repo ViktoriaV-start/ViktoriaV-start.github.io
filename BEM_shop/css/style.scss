@@ -11,7 +11,6 @@ $grey: #636363;
 $white: #fff;
 $border-light: 1px solid #eee;
 
-
 html,
 body {
   height: 100%;
@@ -42,6 +41,10 @@ body {
 @import 'communication.scss';
 @import 'footer.scss';
 @import 'arrivals.scss';
+@import 'catalog';
+@import 'alert';
+@import 'range-slider';
+@import 'checkout';
 
 .poster_margin {
   margin-top: 98px;
@@ -60,3 +63,37 @@ body {
   margin-top: 109px;
   margin-bottom: 85px;
 }
+
+.font_dark-grey-bold {
+  font-size: 14px;
+  color: rgb(111, 110, 110);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.font_dark-grey-light {
+  font-size: 14px;
+  color: rgb(111, 110, 110);
+}
+
+.heart_thin {
+  color: white;
+}
+
+.heart_pink {
+  color: $special-color;
+}
+
+.checkout__filter {
+  margin-top: 47px;
+  display: grid;
+  grid-template-columns: repeat(4, 22.75%);
+  grid-column-gap: 3%;
+  grid-row-gap: 3%;
+}
+
+.mrg-btm {
+  margin-bottom: 250px;
+}
+
+

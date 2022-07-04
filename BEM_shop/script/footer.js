@@ -32,8 +32,8 @@ let footerMainInner = `
     <div class="footer-main__menu-wrap">
         <div class="footer-main__menu">
             <span class="footer-main__header">COMPANY</span>
-            <a href="#" class="footer-main__item">Home</a>
-            <a href="#" class="footer-main__item">Shop</a>
+            <a href="index.html" class="footer-main__item">Home</a>
+            <a href="men.html" class="footer-main__item">Shop</a>
             <a href="#" class="footer-main__item">About</a>
             <a href="#" class="footer-main__item">How It Works</a>
             <a href="#" class="footer-main__item">Contact</a>
@@ -48,7 +48,7 @@ let footerMainInner = `
         </div>
             <div class="footer-main__menu">
             <span class="footer-main__header">SHOP CATEGORY</span>
-            <a href="#" class="footer-main__item">Men</a>
+            <a href="men.html" class="footer-main__item">Men</a>
             <a href="#" class="footer-main__item">Women</a>
             <a href="#" class="footer-main__item">Child</a>
             <a href="#" class="footer-main__item">Apparel</a>
