@@ -128,8 +128,14 @@
     color: $light-grey;
     cursor: pointer;
   }
-  &__input:focus {
-    outline-color: $special-color;
+  &__input:focus-visible {
+    outline: none;
+  }
+
+  &__input:focus-visible ~ .search-form__submit{
+    outline: none;
+    color: $special-color;
   }
 }
+
 

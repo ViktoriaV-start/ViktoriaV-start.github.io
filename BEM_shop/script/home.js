@@ -2,7 +2,7 @@
 //КЛАСС-ОСНОВА ДЛЯ СПИСКА ТОВАРОВ
 class Catalog {
     static API = 'https://raw.githubusercontent.com/ViktoriaV-start/advancedJS/master/brand_data';
-    allProducts = []; //это будет массив из товаров, уже обработанный, массив объектов соответствующего класса
+    allProducts = [];
 
     constructor(selector, url, place, list = map) {
         this.container = selector;
@@ -11,12 +11,12 @@ class Catalog {
         this.list = list;
         this._init(); //автовызов
     }
-//Лучше сделать его как внешний метод, потому что мы можем передавать какие-то отдельные файлы
 
-    _getProducts(url) { //если ()-пустые - то берется url из наших данных, если писать так(url) - значит можно будет передавать сюда еще и сторониие данные
+
+    _getProducts(url) {
         return fetch(url ? String(url) : `${Catalog.API + this.url}`) //подгрузить. Примечание: url в тернанрном операторе и this.url - разные!!! Первый - передается при вызове ф-ции, второйберется из конструктора!!!
-            .then(result => result.json())  // перевести исходник в объект JS promise
-            .catch(error => { //можно не вставлять, так как будет еще внешний обработчик
+            .then(result => result.json())
+            .catch(error => {
                 console.log(error);
             })
     }
@@ -36,7 +36,6 @@ class Catalog {
                 continue;
             }
             block.insertAdjacentHTML(this.place, product.markUp());
-
         }
     }
 
@@ -101,7 +100,6 @@ class CatalogHome extends Catalog {
             if (e.target.classList.contains('add')) {
                 const id = +e.target.dataset['id'];
                 this.cart.addProduct(this.getItem(id)); //вызвать метод из cart - добавление товара в корзину
-
             }
         });
     }
@@ -146,12 +144,13 @@ class Cart extends Catalog {
     updateCart() {
         
         let newQuantity = this.calcQuantity();
-        if (newQuantity == 0) {
+        if (newQuantity === 0) {
             document.querySelector('.header__cart-quantity').classList.add('display-none');
             document.querySelector(this.container).parentNode.classList.add('display-none');
         } else {
             document.querySelector('.header__cart-quantity').classList.remove('display-none');
             document.querySelector('.header__cart-quantity').textContent = newQuantity;
+            document.querySelector(this.container).parentNode.classList.remove('display-none');
         }
     }
 
@@ -160,14 +159,12 @@ class Cart extends Catalog {
         document.querySelector(this.container).addEventListener('click', e => {
 
 //УДАЛЕНИЕ ПОЛНОСТЬЮ ТОВАРА КНОПКОЙ
-            
 
             if (e.target.classList.contains('cart__dlt')) {
                 const id = +e.target.dataset['id'];
                 this.removeMarkUp(id);
                 let item = this.getItem(id);
                 this.allProducts.splice(this.allProducts.indexOf(item), 1);
-                console.log(this.allProducts);
                 this.updateCart();
                 
             }
@@ -203,7 +200,6 @@ class Cart extends Catalog {
 //ПОКАЗ или СКРЫТИЕ КОРЗИНЫ
         document.querySelector('.header__cart').addEventListener('click', () => {
 
-            console.log(111);
             const cartTable = document.querySelector(this.container);
             cartTable.parentNode.classList.toggle('invsbl');
             if (!cartTable.parentNode.classList.contains('invsbl')) {
@@ -218,8 +214,11 @@ class Cart extends Catalog {
         });
 
         document.querySelector('body').addEventListener('click', (e) => {
+            console.log(e.clientY);
             const coordinates = cartTable.parentNode.getBoundingClientRect();
-            if (e.clientX < coordinates.left || e.clientX > coordinates.right || e.clientY > coordinates.bottom + 80) {
+            if (e.clientX < coordinates.left ||
+                e.clientX > coordinates.right ||
+                e.clientY > coordinates.bottom + 80) {
                 cartTable.parentNode.classList.add('invsbl');
             }
         });
@@ -286,7 +285,6 @@ class CartItem extends Item {
                         <i data-id = "${this.id_product}" class="fas fa-caret-right arrow fa-lg quantityPlus"></i>
                     </button>
                 </div>
-
             </div>
 
             <span class="cart__data">FREE</span>
@@ -339,27 +337,27 @@ class FilteredHome extends CatalogHome {
     }
 
     _init() {
-
         document.querySelector(this.container).addEventListener('click', e => {
-
             if (e.target.classList.contains('add')) {
                 const id = +e.target.dataset['id'];
                 this.cart.addProduct(this.getItem(id)); //вызвать метод из cart - добавление товара в корзину
-
             }
         });
 
         document.querySelector('.search-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            this.filter(document.querySelector('.search-form__input').value);
+            let searchValue = document.querySelector('.search-form__input').value;
+            if (searchValue.length !== 0) {
+                this.filter(searchValue);
+            }
         })
     }
 }
+
 class FilteredItem extends Item{}
 
-
 const map = {
-    CatalogHome: CatalogItem, //CatalogHome - это ключ, а CatalogItem - это уже ссылка
-    Cart: CartItem,
-    FilteredHome: FilteredItem
+        CatalogHome: CatalogItem, //CatalogHome - это ключ, а CatalogItem - это уже ссылка
+        Cart: CartItem,
+        FilteredHome: FilteredItem
 };
