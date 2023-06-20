@@ -225,3 +225,37 @@
     width: 100%;
   }
 }
+
+@media all and (max-width: 350px) {
+
+  .container {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .advantage__text {
+    font-size: 0.8rem;
+  }
+
+  .advantage__item {
+    padding: 2.6rem 0.5rem 0.8rem 0.7rem;
+  }
+
+  .products__item {
+    padding-left: 0.3rem;
+    padding-right: 0;
+  }
+
+  .products__title {
+    font-size: 0.8rem;
+  }
+
+  .products__pr3, .products__pr1 {
+    padding-right: 0.2rem;
+  }
+
+  .products__text {
+    font-size: 0.7rem;
+  }
+
+}
