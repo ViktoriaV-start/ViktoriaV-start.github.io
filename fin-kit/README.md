@@ -2,6 +2,8 @@
 
 (https://www.figma.com/file/MmE1nhhBdENzovinWEwdDy/Finkit-Test)
 
+(ViktoriaV-start.github.io/fin-kit/)
+
 **Требования:**
 - верстка на чистом HTML/CSS (без фреймворков, библиотек, систем сборки и т.д.)
 - максимальная ширина макета 1024px с padding-полями 60px с каждой стороны (при большем разрешении выравнивание по центру)
