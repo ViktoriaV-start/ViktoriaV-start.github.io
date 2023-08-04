@@ -2,7 +2,7 @@
 
 (https://www.figma.com/file/MmE1nhhBdENzovinWEwdDy/Finkit-Test)
 
-(ViktoriaV-start.github.io/fin-kit/)
+(https://viktoriav-start.github.io/fin-kit/)
 
 **Требования:**
 - верстка на чистом HTML/CSS (без фреймворков, библиотек, систем сборки и т.д.)
