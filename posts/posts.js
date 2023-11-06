@@ -1,6 +1,6 @@
 async function getData() {
 
-  const response = await fetch('http://api.vk.com/method/get.wall', {
+  const response = await fetch('https://api.vk.com/method/get.wall', {
     method: "POST",
 
     headers: {
