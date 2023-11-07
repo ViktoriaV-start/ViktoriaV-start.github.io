@@ -28,6 +28,13 @@ function getSortedKeys() {
   return vkKeys;
 }
 
+function checkLocalStorage() {
+  if (!getSortedKeys().length && localStorage.length) {
+    localStorage.clear();
+  }
+}
+checkLocalStorage();
+
 
 if (localStorage.length != 0) {
   counter = localStorage.length-1;
