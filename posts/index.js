@@ -1,4 +1,12 @@
+// Реализовать виджет, отображающий список постов из любого паблика в VK (подойдет любой паблик, где постов очень много).
+// Например, с помощью этой функции API VK. Виджет должен иметь фиксированные размеры и возможность прокрутки.
+// При прокрутке содержимого виджета до конца должны подгружаться новые посты.
+// Необходимо реализовать возможность кэширования уже загруженных данных: если пользователь закрыл страницу,
+// а потом снова открыл ее, виджет должен отображать все загруженные ранее данные
+// (новые данные должны подгружаться из учетом уже загруженных ранее).
+// При переполнении localStorage, данные, загруженные последними должны вытеснять данные загруженные первыми.
+
+window.open("https://oauth.vk.com/authorize?client_id=51786833&display=page&redirect_uri=https://viktoriav-start.github.io/posts/posts.html&scope=friends&response_type=token&v=:version&state=123456");
 
 
 
-window.open("https://oauth.vk.com/authorize?client_id=51786833&display=page&redirect_uri=https://viktoriav-start.github.io/posts/posts.html/&scope=friends&response_type=token&v=:version&state=123456");
