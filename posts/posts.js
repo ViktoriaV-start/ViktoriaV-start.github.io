@@ -1,10 +1,15 @@
 'use strict';
 
+console.log(String(document.location.href).split('?')[1].split('&')[0].split('=')[1]);
+
+
+const token = String(document.location.href).split('?')[1].split('&')[0].split('=')[1];
 const posts = {};
 let counter = 0;
 let offset = 0;
 let tempCounter = 0;
 
+//vk1.a.5D51XZ18h_ADCOYEWgeZYYUjxwTHJcwqt0lXTFEG2QLX8AV2VhSdd1BrZLzX-6St87i1E1KeVzrLsLAIV6R9NoVwJF4H90iAfkkW81BwLsOYD6bJSpJiomUMZ_9L-LQ6wDFb5Mf6wfMdXKn2MTkgRO6RicchpnFAQWXSoin3APw4kgb0XcHXt22x3snkWrH9
 
 if (localStorage.length != 0) {
   counter = localStorage.length-1;
@@ -18,7 +23,14 @@ function addScript() {
 
   let elem = document.createElement("script");
 
-  elem.src = `https://api.vk.com/method/wall.get?owner_id=-33276697&fields=bdate&access_token=vk1.a.DoZLc-3Uup1JZW5HqbSjFg_RBxYh3PIZ9ol1igw15x5B2ibWSKU3jqPiCE7jxc8OuWwADzs6JkdlHn5dxDmiKNRx59WQPssrSqxA7hRYQfaps3GR8sGJ08lKpWP8ZG94AxCKLWZX087_FwpYt80FrE0nzZM7M0AjdrEGL_oonZex7tRqLgQhUjW4UVn1yQU5&offset=${offset}&count=100&v=5.131&callback=onVkData`;
+  elem.src = `https://api.vk.com/method/wall.get
+              ?access_token=${token}
+              &owner_id=-33276697
+              &fields=bdate
+              &offset=${offset}
+              &count=100
+              &v=5.131
+              &callback=onVkData`;
   document.querySelector('body').insertAdjacentElement('beforeend', elem);
 }
 
@@ -28,6 +40,7 @@ addScript();
  * Обработать пришедшие данные VK
  */
 function onVkData(res) {
+  
   let result = res.response.items;
   let length = result.length;
 
