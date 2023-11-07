@@ -1,14 +1,10 @@
 'use strict';
 
-// console.log(String(document.location.href).split('?')[1].split('&')[0].split('=')[1]);
-// const token = String(document.location.href).split('?')[1].split('&')[0].split('=')[1];
 
-// Для Guthub pages:
-//const token = String(document.location.href).split('#')[1].split('&')[0].split('=')[1];
+console.log(String(document.location.href).split('#')[1].split('&')[0].split('=')[1]);
 
 
-// Это мой токен для разработки, действует примерно сутки
-const token = 'vk1.a.5D51XZ18h_ADCOYEWgeZYYUjxwTHJcwqt0lXTFEG2QLX8AV2VhSdd1BrZLzX-6St87i1E1KeVzrLsLAIV6R9NoVwJF4H90iAfkkW81BwLsOYD6bJSpJiomUMZ_9L-LQ6wDFb5Mf6wfMdXKn2MTkgRO6RicchpnFAQWXSoin3APw4kgb0XcHXt22x3snkWrH9';
+const token = String(document.location.href).split('#')[1].split('&')[0].split('=')[1];
 
 const posts = {};
 let counter = 0;
