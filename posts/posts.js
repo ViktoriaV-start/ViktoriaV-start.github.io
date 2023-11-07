@@ -1,13 +1,36 @@
 'use strict';
 
-console.log(String(document.location.href).split('#')[1].split('&')[0].split('=')[1]);
+// console.log(String(document.location.href).split('?')[1].split('&')[0].split('=')[1]);
+// const token = String(document.location.href).split('?')[1].split('&')[0].split('=')[1];
+
+// Для Guthub pages:
+//const token = String(document.location.href).split('#')[1].split('&')[0].split('=')[1];
 
 
-const token = String(document.location.href).split('#')[1].split('&')[0].split('=')[1];
+// Это мой токен для разработки, действует примерно сутки
+const token = 'vk1.a.5D51XZ18h_ADCOYEWgeZYYUjxwTHJcwqt0lXTFEG2QLX8AV2VhSdd1BrZLzX-6St87i1E1KeVzrLsLAIV6R9NoVwJF4H90iAfkkW81BwLsOYD6bJSpJiomUMZ_9L-LQ6wDFb5Mf6wfMdXKn2MTkgRO6RicchpnFAQWXSoin3APw4kgb0XcHXt22x3snkWrH9';
+
 const posts = {};
 let counter = 0;
 let offset = 0;
 let tempCounter = 0;
+
+
+/**
+ * Возвращает отсортированный массив ключей localStorage без приставки vk
+ */
+function getSortedKeys() {
+  let vkKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i)[0] == 'v' && localStorage.key(i)[1] == 'k') {
+      vkKeys.push(localStorage.key(i).slice(2));
+    }
+  }
+
+  vkKeys = vkKeys.sort((a, b) => a - b);
+  
+  return vkKeys;
+}
 
 
 if (localStorage.length != 0) {
@@ -23,7 +46,6 @@ function addScript() {
   let elem = document.createElement("script");
 
   elem.src = `https://api.vk.com/method/wall.get?access_token=${token}&owner_id=-33276697&fields=bdate&offset=${offset}&count=100&v=5.131&callback=onVkData`;
-  
   document.querySelector('body').insertAdjacentElement('beforeend', elem);
 }
 
@@ -38,7 +60,7 @@ function onVkData(res) {
   let length = result.length;
 
   for (let i = 0; i <length; i++ ) {
-    posts[i] = result[i].text
+    posts[i] = result[i].text;
   }
   insertPosts();
 }
@@ -60,7 +82,7 @@ function scrollContent() {
       insertPosts();
     }
 
-    if (tempCounter == 100 ){
+    if (tempCounter >= 100 ){
       console.log('Новый запрос');
       tempCounter = 0;
       offset = counter;
@@ -84,7 +106,7 @@ function insertPosts() {
     console.log('Первичный вход')
     for (let i = 0; i < 5; i++) {
       postsMarkup += getPostMarkup(tempCounter);
-      localStorage[counter] = posts[tempCounter];
+      localStorage['vk' + counter] = posts[tempCounter];
       localStorage.counter = counter;
       counter++;
       tempCounter++;
@@ -95,7 +117,7 @@ function insertPosts() {
   if (localStorage.length != 0 && !isLocalStorageRendered ) {
     console.log('Рендер постов из localStorage')
     for (let i = 0; i < localStorage.length; i++) {
-      if (localStorage.key(i) != 'counter') {
+      if (localStorage.key(i)[0] == 'v' && localStorage.key(i)[1] == 'k') {
         postsMarkup += getPostMarkupStorage(localStorage.key(i));
       }
     }
@@ -108,16 +130,15 @@ function insertPosts() {
         postsMarkup += getPostMarkup(tempCounter);
 
         try {
-          localStorage[counter] = posts[tempCounter];
+          localStorage['vk' + counter] = posts[tempCounter];
           localStorage.counter = counter;
         } catch (er) {
           console.log(er);
 
-          let key = Object.keys(localStorage).sort((a, b) => a - b);
-          key = key.filter((el) => el != 'counter');
+          let keys = getSortedKeys();
 
           for (let i = 0; i < 10; i++) {
-            localStorage.removeItem(key[i]);
+            localStorage.removeItem(`vk${keys[i]}`);
           }
         }
         
