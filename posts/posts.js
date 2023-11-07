@@ -1,9 +1,9 @@
 'use strict';
 
-console.log(String(document.location.href).split('?')[1].split('&')[0].split('=')[1]);
+console.log(String(document.location.href).split('#')[1].split('&')[0].split('=')[1]);
 
 
-const token = String(document.location.href).split('?')[1].split('&')[0].split('=')[1];
+const token = String(document.location.href).split('#')[1].split('&')[0].split('=')[1];
 const posts = {};
 let counter = 0;
 let offset = 0;
