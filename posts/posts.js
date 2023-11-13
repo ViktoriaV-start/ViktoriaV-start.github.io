@@ -118,11 +118,12 @@ function insertPosts() {
   }
   
   if (localStorage.length != 0 && !isLocalStorageRendered ) {
-    console.log('Рендер постов из localStorage')
-    for (let i = 0; i < localStorage.length; i++) {
-      if (localStorage.key(i)[0] == 'v' && localStorage.key(i)[1] == 'k') {
-        postsMarkup += getPostMarkupStorage('vk' + i);
-      }
+    console.log('Рендер постов из localStorage');
+      
+    let lng = localStorage.counter;
+      
+    for (let i = 0; i < lng; i++) {
+      postsMarkup += getPostMarkupStorage('vk' + i);
     }
     isLocalStorageRendered = true;
 
