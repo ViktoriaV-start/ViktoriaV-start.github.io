@@ -121,7 +121,7 @@ function insertPosts() {
     console.log('Рендер постов из localStorage')
     for (let i = 0; i < localStorage.length; i++) {
       if (localStorage.key(i)[0] == 'v' && localStorage.key(i)[1] == 'k') {
-        postsMarkup += getPostMarkupStorage(localStorage.key(i));
+        postsMarkup += getPostMarkupStorage('vk' + i);
       }
     }
     isLocalStorageRendered = true;
