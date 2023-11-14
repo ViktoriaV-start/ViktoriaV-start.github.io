@@ -123,7 +123,9 @@ function insertPosts() {
     let lng = localStorage.counter;
       
     for (let i = 0; i < lng; i++) {
-      postsMarkup += getPostMarkupStorage('vk' + i);
+      if (localStorage['vk' + i]) {
+        postsMarkup += getPostMarkupStorage('vk' + i);
+      }
     }
     isLocalStorageRendered = true;
 
