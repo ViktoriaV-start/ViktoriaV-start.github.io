@@ -1,3 +1,3 @@
 # Генератор Мемов
 
-https://viktoriav-start.github.io/BEM_shop/
+https://viktoriav-start.github.io/meme/
