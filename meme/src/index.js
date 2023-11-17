@@ -4,6 +4,7 @@ const messages = {
   errorFile: 'Используйте изображение в форматах jpeg, png, gif',
   noFile: 'Загрузите файл',
   errorText: 'Используйте для текста буквы, цифры и знаки препинания',
+  errorReader: 'Ошибка при чтении файла'
 }
 
 const main = document.querySelector('.main');
@@ -329,27 +330,37 @@ function wrapText(ctx, text, marginLeft, marginTop, maxWidth, lineHeight)
     // Слушатель события клика на кнопку СОЗДАТЬ
     generateBtn.addEventListener('click', () => {
 
-      spinner.classList.remove('invisible');
-      disposition.classList.remove('hidden');
-      exportBtn.classList.remove('invisible');
-      clearBtn.classList.remove('invisible');
-
       let file = imgInput.files[0];
 
       let topText = topTextInput.value.trim().slice(0, 250);
       let bottomText = bottomTextInput.value.trim().slice(0, 250);
 
       if (validate(file, topText, bottomText)) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
 
-          img.src = reader.result;
-          img.onload = () => {
-            generateMeme();
-            spinner.classList.add('invisible');
+        spinner.classList.remove('invisible');
+
+        const reader = new FileReader();
+
+        try {
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+
+            img.src = reader.result;
+            img.onload = () => {
+              generateMeme();
+              spinner.classList.add('invisible');
+              disposition.classList.remove('hidden');
+              exportBtn.classList.remove('invisible');
+              clearBtn.classList.remove('invisible');
+            };
           };
-        };
+        } catch (err) {
+          alert.textContent = messages.errorReader;
+          alert.classList.add('error');
+          alert.classList.remove('invisible');
+          spinner.classList.add('invisible');
+        }
+
       }
     });
 
