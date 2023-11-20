@@ -132,7 +132,7 @@ body {
   background-color: #72a2b2;
 }
 
-.export:active, clear:hover {
+.export:active, clear:active {
   background-color: #4a7989;
 }
 

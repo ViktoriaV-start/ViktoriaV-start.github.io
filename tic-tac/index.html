@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/norm.css">
+    <title>Крестики-Нолики</title>
+</head>
+<body>
+
+  <header class="header__wrap"></header>
+  <nav class="nav">
+    <div class="nav__item nav__friends active">Игра вдвоем</div>
+    <div class="nav__item nav__comp">Игра с компьютером</div>
+  </nav>
+  <main class="main">
+    <div class="main__header container">
+      
+
+      <div class="main__round">
+        <div class="main__text">Раунд</div>
+        <div class="main__rnd"></div>
+      </div>
+      <div class="main__score">
+        <div class="main__text">Первый игрок - X:</div><span class="main__x-score"></span>
+      </div>
+      <div class="main__score">
+        <div class="main__text main__rival">Второй игрок - 0:</div><span class="main__zero-score"></span>
+      </div>
+      
+      
+      <div class="main__turn">
+        <div class="main__text">Ход игрока</div>
+        <div class="main__player"></div>
+      </div>
+      <div class="main__victory hidden"></div>
+    </div>
+    <div class="main__field"></div>
+
+    <div class="main__footer container">
+      <button type="button" class="main__new">Новая игра</button>
+      <button type="button" class="main__save">Сохранить игру</button>
+      <button type="button" class="main__delete">Удалить игру</button>
+    </div>
+  
+  </main>
+
+  <script src="./src/header.js"></script>
+  <script src="./src/Data.js"></script>
+  <script src="./src/Game.js"></script>
+  <script src="./src/GameStorage.js"></script>
+  <script src="./src/GameComputer.js"></script>
+  <script src="./src/index.js"></script>
+
+</body>
+</html>
