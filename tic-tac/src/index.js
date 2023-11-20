@@ -96,6 +96,7 @@ friends.addEventListener('click', () => {
   friends.classList.add('active');
   computerRival = false;
   game.main.innerHTML = '';
+  game.info.classList.add('hidden');
 
   data = new Data();
   startNewGame();
