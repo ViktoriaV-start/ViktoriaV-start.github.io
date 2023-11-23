@@ -3,6 +3,7 @@
 const diagram = document.querySelector(".diagram");
 const nav = document.querySelector('.nav');
 const sortBtn = document.querySelector('.sort-btn');
+const sortStop = document.querySelector('.sort-stop');
 const newArrBtn = document.querySelector('.controls__array')
 const speedRange = document.getElementById('speed');
 const sizeRange = document.getElementById("size");
@@ -11,7 +12,7 @@ let sortType = 'bubble';
 // Цвета
 const p = "#f8c4c4";
 const p1 = "#ff8ba0";
-const p2 = '#B03C72'; //"#86003c";
+const p2 = '#B03C72';
 const sorted = "#e41f7b";
 
 // Колонки
@@ -26,8 +27,6 @@ let delay = 10000 / (Math.floor(n / 10) * speed);
 let c = 0;
 
 let timeoutId = null;
-let timeoutIdAnim = null;
-
 
 generateNewArray();
 init();
@@ -38,12 +37,25 @@ init();
 function init() {
 
   // Слушатель события для выбора типа сортировки
-  nav.addEventListener('click', changeSortType)
+  nav.addEventListener('click', changeSortType);
+
+  sortStop.addEventListener('click', () => {
+    nav.addEventListener('click', changeSortType)
+    document.getElementById("size").disabled = false;
+    document.getElementById("speed").disabled = false;
+    sortBtn.classList.remove('invisible');
+    sortStop.classList.add('invisible');
+    newArrBtn.disabled = false;
+    c = 0;
+    generateNewArray();
+
+  });
 
   // Слушатель события для старта сортировки
   sortBtn.addEventListener("click", () => {
     nav.removeEventListener('click', changeSortType)
-    sortBtn.classList.add('hidden');
+    sortBtn.classList.add('invisible');
+    sortStop.classList.remove('invisible');
     newArrBtn.disabled = true;
     document.getElementById("size").disabled = true;
     document.getElementById("speed").disabled = true;
@@ -72,7 +84,8 @@ function init() {
       nav.addEventListener('click', changeSortType)
       document.getElementById("size").disabled = false;
       document.getElementById("speed").disabled = false;
-      sortBtn.classList.remove('hidden');
+      sortBtn.classList.remove('invisible');
+      sortStop.classList.add('invisible');
       newArrBtn.disabled = false;
       c = 0;
     }, c);
@@ -122,7 +135,6 @@ function randomNumber(min, max) {
  */
 function generateNewArray() {
   clearTimeout(timeoutId);
-  clearTimeout(timeoutIdAnim);
   document.getElementById("size").disabled = false;
   document.getElementById("speed").disabled = false;
   c = 0;
@@ -146,16 +158,19 @@ function generateNewArray() {
 };
 
 /**
- * Установить высоту и цвет элементу-колонке
+ * Визуализация - установить высоту и цвет элементу-колонке
  * @param {HTMLElement} bar 
  * @param {number} height 
  * @param {string} color 
  */
 const animate = (bar, height, color) => {
-  timeoutIdAnim = setTimeout(() => {
-    bar.style.height = height + "px";
-    bar.style.backgroundColor = color;
-  }, (c += delay));
+  return new Promise((resolve) => {
+    let timerId = setTimeout(() => {
+      bar.style.height = height + "px";
+      bar.style.backgroundColor = color;
+      resolve(timerId);
+    }, (c += delay));
+  })
 
 };
 
@@ -164,29 +179,31 @@ const animate = (bar, height, color) => {
  */
 function bubbleSort() {
   for (let i = 0; i < n - 1; i++) {
+
     for (let j = 0; j < n - i - 1; j++) {
 
-      animate(bars[j], barsHeight[j], p1); // первый элемент - один цвет
-      animate(bars[j + 1], barsHeight[j + 1], p2);  // второй элемент - другой цвет
+
+      animate(bars[j], barsHeight[j], p1).then((id) => clearTimeout(id)); // первый элемент - один цвет
+      animate(bars[j + 1], barsHeight[j + 1], p2).then((id) => clearTimeout(id));  // второй элемент - другой цвет
 
       if (barsHeight[j] > barsHeight[j + 1]) {
         // поменять местами, если левый больше правого
         [barsHeight[j], barsHeight[j + 1]] = [barsHeight[j + 1], barsHeight[j]];
 
         // отметить цветом при смене положения
-        animate(bars[j], barsHeight[j], p2);
-        animate(bars[j + 1], barsHeight[j + 1], p1);
+        animate(bars[j], barsHeight[j], p2).then((id) => clearTimeout(id));
+        animate(bars[j + 1], barsHeight[j + 1], p1).then((id) => clearTimeout(id));
       }
 
       // вернуть общий цвет
-      animate(bars[j], barsHeight[j], p);
-      animate(bars[j + 1], barsHeight[j + 1], p);
+      animate(bars[j], barsHeight[j], p).then((id) => clearTimeout(id));
+      animate(bars[j + 1], barsHeight[j + 1], p).then((id) => clearTimeout(id));
     }
     // новый цвет отсортированному элементу
-    animate(bars[n - 1 - i], barsHeight[n - 1 - i], sorted);
+    animate(bars[n - 1 - i], barsHeight[n - 1 - i], sorted).then((id) => clearTimeout(id));
   }
   // новый цвет оставшемуся элементу
-  animate(bars[0], barsHeight[0], sorted);
+  animate(bars[0], barsHeight[0], sorted).then((id) => clearTimeout(id));
 }
 
 /**
@@ -195,41 +212,41 @@ function bubbleSort() {
 function selectionSort() {
   for (let i = 0; i < n - 1; i++) {
     let min = i;
-    animate(bars[i], barsHeight[i], p2);
+    animate(bars[i], barsHeight[i], p2).then((id) => clearTimeout(id));
 
     // Найти индекс минимального значения
     for (let j = n - 1; j > i; j--) {
-      animate(bars[j], barsHeight[j], p1);
+      animate(bars[j], barsHeight[j], p1).then((id) => clearTimeout(id));
 
       if (barsHeight[j] < barsHeight[min]) {
-        animate(bars[min], barsHeight[min], p);
+        animate(bars[min], barsHeight[min], p).then((id) => clearTimeout(id));
         min = j;
-        animate(bars[min], barsHeight[min], p2);
+        animate(bars[min], barsHeight[min], p2).then((id) => clearTimeout(id));
       };
 
       if (j !== min) {
-        animate(bars[j], barsHeight[j], p);
+        animate(bars[j], barsHeight[j], p).then((id) => clearTimeout(id));
       }
     }
 
-    animate(bars[i], barsHeight[i], p1);
-    animate(bars[min], barsHeight[min], p2);
+    animate(bars[i], barsHeight[i], p1).then((id) => clearTimeout(id));
+    animate(bars[min], barsHeight[min], p2).then((id) => clearTimeout(id));
 
   //поменять местами в массииве значений минимальное значение со значением на i-той позиции
     [barsHeight[i], barsHeight[min]] = [barsHeight[min], barsHeight[i]];
 
     //выделить цветам колонки, которые меняются местами
-    animate(bars[i], barsHeight[i], p2);
-    animate(bars[min], barsHeight[min], p1)
+    animate(bars[i], barsHeight[i], p2).then((id) => clearTimeout(id));
+    animate(bars[min], barsHeight[min], p1).then((id) => clearTimeout(id));
 
     // новый цвет отсортированному элементу
-    animate(bars[i], barsHeight[i], sorted);
+    animate(bars[i], barsHeight[i], sorted).then((id) => clearTimeout(id));
 
     // вернуть общий цвет перемещенному элементу, если его индекс не совпадает с min
-    if (min != i) animate(bars[min], barsHeight[min], p);
+    if (min != i) animate(bars[min], barsHeight[min], p).then((id) => clearTimeout(id));
   }
   // новый цвет оставшемуся элементу
-  animate(bars[n - 1], barsHeight[n - 1], sorted);
+  animate(bars[n - 1], barsHeight[n - 1], sorted).then((id) => clearTimeout(id));
 }
 
 /**
@@ -240,7 +257,7 @@ function insertionSort() {
 
     // значение  по текущему индексу
     let current = barsHeight[i];
-    animate(bars[i], barsHeight[i], p2);
+    animate(bars[i], barsHeight[i], p2).then((id) => clearTimeout(id));
     let j = i - 1;
   
     for (; j >= 0 && barsHeight[j] > current; j--) {
@@ -248,20 +265,20 @@ function insertionSort() {
       // присвоить на правую позицию от j значение по индексу j
       barsHeight[j + 1] = barsHeight[j];
 
-      animate(bars[j], barsHeight[j], p1);
-      animate(bars[j + 1], barsHeight[j + 1], p2);
-      animate(bars[j + 1], barsHeight[j + 1], sorted);
-      animate(bars[j], barsHeight[j], sorted);
+      animate(bars[j], barsHeight[j], p1).then((id) => clearTimeout(id));
+      animate(bars[j + 1], barsHeight[j + 1], p2).then((id) => clearTimeout(id));
+      animate(bars[j + 1], barsHeight[j + 1], sorted).then((id) => clearTimeout(id));
+      animate(bars[j], barsHeight[j], sorted).then((id) => clearTimeout(id));
       
     }
 
     // Вставить текущее значение
     barsHeight[j + 1] = current;
 
-    animate(bars[i], barsHeight[i], p1);
-    animate(bars[i], barsHeight[i], sorted);
-    animate(bars[j + 1], barsHeight[j + 1], p2);
-    animate(bars[j + 1], barsHeight[j + 1], sorted);
+    animate(bars[i], barsHeight[i], p1).then((id) => clearTimeout(id));
+    animate(bars[i], barsHeight[i], sorted).then((id) => clearTimeout(id));
+    animate(bars[j + 1], barsHeight[j + 1], p2).then((id) => clearTimeout(id));
+    animate(bars[j + 1], barsHeight[j + 1], sorted).then((id) => clearTimeout(id));
   }
 }
 
@@ -291,30 +308,30 @@ function merge(start, end) {
 
   while (start1 <= end1 && start2 <= end2) {
     if (barsHeight[start1] <= barsHeight[start2]) {
-      animate(bars[start1], barsHeight[start1], p1);
+      animate(bars[start1], barsHeight[start1], p1).then((id) => clearTimeout(id));
       arr.push(barsHeight[start1]);
       start1++;
     } else {
       arr.push(barsHeight[start2]);
-      animate(bars[start2], barsHeight[start2], p2);
+      animate(bars[start2], barsHeight[start2], p2).then((id) => clearTimeout(id));
       start2++;
     }
   }
   while (start1 <= end1) {
-    animate(bars[start1], barsHeight[start1], p1);
+    animate(bars[start1], barsHeight[start1], p1).then((id) => clearTimeout(id));
     arr.push(barsHeight[start1]);
     start1++;
   }
   while (start2 <= end2) {
     arr.push(barsHeight[start2]);
-    animate(bars[start2], barsHeight[start2], p2);
+    animate(bars[start2], barsHeight[start2], p2).then((id) => clearTimeout(id));
     start2++;
   }
 
   //цвет для отсортированного массива
   for (let i = 0; i < arr.length; i++) {
     barsHeight[start + i] = arr[i];
-    animate(bars[start + i], barsHeight[start + i], sorted);
+    animate(bars[start + i], barsHeight[start + i], sorted).then((id) => clearTimeout(id));
   }
 }
 
@@ -331,10 +348,10 @@ function quickSort(start = 0, end = n - 1) {
   }
 
   for (let m = start; m <= end; m++) {
-    animate(bars[m], barsHeight[m], p2);
+    animate(bars[m], barsHeight[m], p2).then((id) => clearTimeout(id));
   }
   for (let m = start; m <= end; m++) {
-    animate(bars[m], barsHeight[m], p);
+    animate(bars[m], barsHeight[m], p).then((id) => clearTimeout(id));
   }
 
   // Получить индекс опорного элемента
@@ -355,36 +372,36 @@ function quickSort(start = 0, end = n - 1) {
 function partition(start, end){
   // Опорное значение - end
   const pivotValue = barsHeight[end];
-  animate(bars[end], barsHeight[end], sorted)
+  animate(bars[end], barsHeight[end], sorted).then((id) => clearTimeout(id));
 
   // Опорный индекс - start, чтобы отслеживать «среднее» положение,
   //когда все элементы слева меньше, а все элементы справа больше, чем pivotValue
   let pivotIndex = start; 
   for (let i = start; i < end; i++) {
-    animate(bars[i], barsHeight[i], p1);
-    animate(bars[pivotIndex], barsHeight[pivotIndex], p2);
+    animate(bars[i], barsHeight[i], p1).then((id) => clearTimeout(id));
+    animate(bars[pivotIndex], barsHeight[pivotIndex], p2).then((id) => clearTimeout(id));
     
       if (barsHeight[i] < pivotValue) {
       // Поменять элементы местами и отметить цветом смену позиции
       [barsHeight[i], barsHeight[pivotIndex]] = [barsHeight[pivotIndex], barsHeight[i]];
-      animate(bars[i], barsHeight[i], p2);
-      animate(bars[pivotIndex], barsHeight[pivotIndex], p1);
-      animate(bars[i], barsHeight[i], p);
-      animate(bars[pivotIndex], barsHeight[pivotIndex], sorted);
+      animate(bars[i], barsHeight[i], p2).then((id) => clearTimeout(id));
+      animate(bars[pivotIndex], barsHeight[pivotIndex], p1).then((id) => clearTimeout(id));
+      animate(bars[i], barsHeight[i], p).then((id) => clearTimeout(id));
+      animate(bars[pivotIndex], barsHeight[pivotIndex], sorted).then((id) => clearTimeout(id));
       // Перейти к следующему элементу
       pivotIndex++;
       } else {
-        animate(bars[i], barsHeight[i], p);
+        animate(bars[i], barsHeight[i], p).then((id) => clearTimeout(id));
       }
   }
 
   // На место опорного индекса pivotIndex поставить элемент с опорным значением pivotValue (поменять местами),
   // то есть опорный элемент оказывается в середине
-  animate(bars[pivotIndex], barsHeight[pivotIndex], p1);
-  animate(bars[end], barsHeight[end], p2);
+  animate(bars[pivotIndex], barsHeight[pivotIndex], p1).then((id) => clearTimeout(id));
+  animate(bars[end], barsHeight[end], p2).then((id) => clearTimeout(id));
   [barsHeight[pivotIndex], barsHeight[end]] = [barsHeight[end], barsHeight[pivotIndex]];
-  animate(bars[pivotIndex], barsHeight[pivotIndex], sorted);
-  animate(bars[end], barsHeight[end], sorted);
+  animate(bars[pivotIndex], barsHeight[pivotIndex], sorted).then((id) => clearTimeout(id));
+  animate(bars[end], barsHeight[end], sorted).then((id) => clearTimeout(id));
 
   return pivotIndex;
 };

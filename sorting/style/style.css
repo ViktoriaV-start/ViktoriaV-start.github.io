@@ -117,7 +117,8 @@ body {
 }
 
 .sort-btn,
-.controls__array {
+.controls__array,
+.sort-stop {
   width: 15rem;
   padding: 1rem 3rem;
   border: none;
@@ -127,7 +128,8 @@ body {
   font-size: 1.2rem;
 }
 
-.sort-btn {
+.sort-btn,
+.sort-stop {
   margin-top: 0.5rem;
 }
 
@@ -136,7 +138,8 @@ body {
   color: #4a7989;
 }
 
-.sort-btn:hover {
+.sort-btn:hover,
+.sort-stop:hover {
   background-color: #e97676;
 }
 
@@ -192,6 +195,10 @@ body {
   margin-right: 0.1%;
   margin-left: 0.3%;
   display: inline-block;
+}
+
+.invisible {
+  display: none;
 }
 
 
