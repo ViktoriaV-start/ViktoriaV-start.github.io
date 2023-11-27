@@ -17,9 +17,14 @@ let computerRival = friends.classList.contains('active') ? false : true;
 let game = null;
 let data = new Data();
 
-startNewGame();
 
-// Запуск приложения
+startNewGame();
+init();
+
+
+/**
+ * Запуск приложения
+ */
 function startNewGame() {
 
   // Проверка: есть сохраненная игра или нет, и кто соперник
@@ -41,75 +46,84 @@ function startNewGame() {
   }
 }
 
-// Новая игра
-btnNew.addEventListener('click', () => {
+/**
+ * Установить слушателей события
+ */
+function init() {
 
-  game.main.innerHTML = '';
-  game.info.classList.add('hidden');
-  data.setCounter(data.getCounter() + 1);
+  // Новая игра
+  btnNew.addEventListener('click', () => {
 
-  if (computerRival) {
-    game = new GameComputer(data);
-  } else {
-    game = new Game(data);
-  }
+    game.main.innerHTML = '';
+    game.info.classList.add('hidden');
+    data.setCounter(data.getCounter() + 1);
 
-});
+    if (computerRival) {
+      game = new GameComputer(data);
+    } else {
+      game = new Game(data);
+    }
+
+  });
 
 
 // Сохранить текущую игру
-btnSave.addEventListener('click', () => {
+  btnSave.addEventListener('click', () => {
 
-  let currentGame = {};
-  for (let cell of game.cells) {
-    currentGame[cell.getAttribute('data-id')] = cell.textContent;
-  }
+    let currentGame = {};
+    for (let cell of game.cells) {
+      currentGame[cell.getAttribute('data-id')] = cell.textContent;
+    }
 
-  let counter = data.getCounter();
-  let players = data.getPlayers();
-  let currentPlayer = data.getCurrentPlayer();
+    let counter = data.getCounter();
+    let players = data.getPlayers();
+    let currentPlayer = data.getCurrentPlayer();
 
-  localStorage.tictac = JSON.stringify({
-    currentGame,
-    counter,
-    players,
-    currentPlayer
+    localStorage.tictac = JSON.stringify({
+      currentGame,
+      counter,
+      players,
+      currentPlayer
+    })
+
+  });
+
+
+  // Игра с компьютером
+  comp.addEventListener('click', () => {
+    comp.classList.add('active');
+    friends.classList.remove('active');
+    computerRival = true;
+
+    data = new Data();
+    startNewGame();
   })
 
-});
 
+  // Игра вдвоем
+  friends.addEventListener('click', () => {
+    comp.classList.remove('active');
+    friends.classList.add('active');
+    computerRival = false;
+    game.main.innerHTML = '';
+    game.info.classList.add('hidden');
 
-// Игра с компьютером
-comp.addEventListener('click', () => {
-  comp.classList.add('active');
-  friends.classList.remove('active');
-  computerRival = true;
-
-  data = new Data();
-  startNewGame();
-})
-
-
-// Игра вдвоем
-friends.addEventListener('click', () => {
-  comp.classList.remove('active');
-  friends.classList.add('active');
-  computerRival = false;
-  game.main.innerHTML = '';
-  game.info.classList.add('hidden');
-
-  data = new Data();
-  startNewGame();
-})
+    data = new Data();
+    startNewGame();
+  })
 
 
 // Удалить текущую игру
-btnDelete.addEventListener('click', () => {
+  btnDelete.addEventListener('click', () => {
 
-  localStorage.removeItem('tictac');
-  game.main.innerHTML = '';
-  game.info.classList.add('hidden');
-  data = new Data();
-  game = new Game(data);
+    localStorage.removeItem('tictac');
+    game.main.innerHTML = '';
+    game.info.classList.add('hidden');
+    data = new Data();
+    game = new Game(data);
 
-});
+  });
+
+}
+
+
