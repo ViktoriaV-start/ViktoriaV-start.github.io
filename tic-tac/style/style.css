@@ -202,6 +202,12 @@ body {
   margin-top: 0.5rem;
 }
 
+.main__footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .invisible {
   display: none;
 }
@@ -215,7 +221,6 @@ body {
 
 @media all and (max-width: 759.9px) {
   .main__footer {
-    display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding-bottom: 3rem;
