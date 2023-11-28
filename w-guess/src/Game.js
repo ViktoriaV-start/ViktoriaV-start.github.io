@@ -1,5 +1,6 @@
 import {
-  CLASS_BTN_CHECK,
+
+  CLASS_CHECK,
   MESSAGES, SELECTOR_ANSWER,
   SELECTOR_GAME,
   SELECTOR_INPUT_ANSWER,
@@ -63,8 +64,9 @@ export class Game {
    */
   _init() {
     //проверить ответ пользователя и установить анимацию для сообщения
-    this.gameContainer.addEventListener('click', (e) => {
-      if (e.target.classList.contains(CLASS_BTN_CHECK)) {
+    this.gameContainer.addEventListener('submit', (e) => {
+      if (e.target.classList.contains(CLASS_CHECK)) {
+        e.preventDefault();
         this.messagesContainer.classList.add('scale-up-center');
         this._guess(this.inputContainer.value)
       }
@@ -150,11 +152,11 @@ export class Game {
 
       </div>
 
-      <div class="main__answer-wrap">
+      <form class="main__answer-wrap">
           <div class="main__text task">Угадайте число от ${this.min} до ${this.max}</div>
           <input type="text" class="main__input inp__answer">
-          <button type="button" class="main__check">Проверить</button>
-        </div>
+          <button type="submit" class="main__check">Проверить</button>
+        </form>
 
     `
   }

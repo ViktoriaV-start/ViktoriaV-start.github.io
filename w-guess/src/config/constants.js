@@ -22,4 +22,4 @@ export const CLASS_INPUT_FROM      = 'inp__from';
 export const CLASS_INPUT_TO        = 'inp__to';
 export const CLASS_BTN_NEW         = 'main__new';
 export const CLASS_ALERT_CLOSE     = 'main__close';
-export const CLASS_BTN_CHECK       = 'main__check';
+export const CLASS_CHECK           = 'main__answer-wrap';
