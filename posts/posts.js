@@ -1,5 +1,4 @@
-'use strict';
-
+// ВТОРОЙ ВАРИАНТ - С КЛАССОМ
 
 // Это мой токен для разработки, действует примерно сутки
 const TOKEN = 'vk1.a.MsYxJnEPwXwzWltP-ARxb49Wgkph6v5u3g3gHEASMz6IlatnjpV_Z0kkniogJezBFsJFmPAl28CqeWq643JUiqqE00Uw1UAcL2eFJC5OB4LDJ2F3zSpELBlfl75saWQHyLzI4JnZZTJ5KiepsVaR8-mwopmlylP3CPLcH9SUislDl1as1vrl6Y6vBx4DZLJK';
@@ -12,10 +11,8 @@ class Posts {
   tempCounter = 0;
   scrollContainer = document.querySelector('.scrollContainer');
   isLocalStorageRendered = false;
-  maxStorageMemory = 0;
 
   constructor() {
-    this.maxStorageMemory = localStorage.maxStorageMemory ?? this.getMaxMemory();
     this.init();
   }
 
@@ -136,8 +133,6 @@ class Posts {
       }
     }
 
-    console.log(`Объем занятой памяти - ${this.getStorageValue()} KB / максимальный размер хранилища - ${this.maxStorageMemory} KB`);
-
     this.scrollContainer.insertAdjacentHTML('beforebegin', postsMarkup);
   }
 
@@ -157,52 +152,6 @@ class Posts {
    */
   getPostMarkupStorage(key) {
     return `<div class="post">${localStorage[key]}</div>`;
-  }
-
-  /**
-   * Подсчет максимальной памяти
-   * @returns {number}
-   */
-  getMaxMemory() {
-    let total = 0;
-    localStorage.clear();
-
-    try{
-      let i = 0;
-      // ЗДЕСЬ МОЖНО ЧЕРЕЗ WHILE (TRUE)
-      while (i < 25000) {
-        localStorage.setItem(`Key${i}`, "Window.localStorage: Свойство localStorage позволяет получить доступ к Storage объекту. localStorage аналогично свойству sessionStorage (en-US). Разница только в том, что свойство sessionStorage хранит данные в течение сеанса (до закрытия браузера), в отличие от данных, находящихся в свойстве localStorage, которые не имеют ограничений по времени хранения и могут быть удалены только с помощью JavaScript.");
-        i++;
-      }
-    } catch (er) {
-      console.log(er);
-    }
-
-    total = this.getStorageValue();
-
-    console.log("Максимальный размер localStorage = " + total +" KB");
-
-    localStorage.clear();
-
-    return total;
-  }
-
-  /**
-   * Подсчет объема занятой памяти в localStorage
-   * @returns {number}
-   */
-  getStorageValue() {
-    let total = 0;
-    for(let x in localStorage) {
-
-      if (!localStorage.hasOwnProperty(x)) {
-        continue;
-      }
-
-      let size = (((localStorage[x].length + x.length) * 2));
-      total += size;
-    }
-    return (total/1024).toFixed(2);
   }
 
 
