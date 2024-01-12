@@ -18,7 +18,6 @@ class Posts {
       this.counter = +localStorage.counter;
       this.offset = +localStorage.counter;
 
-      console.log(this.tempCounter, this.counter, this.offset)
       this.insertPosts();
     } else {
       addScript();
@@ -69,7 +68,6 @@ class Posts {
 
     if (scrollBottom <= 300) {
       
-      console.log(scrollBottom, Object.keys(this.posts).length, this.tempCounter, this.offset, this.counter)
       if (Object.keys(this.posts).length > this.tempCounter + 1) {
         this.insertPosts();
       }
