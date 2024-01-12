@@ -3,6 +3,7 @@
 // Это мой токен для разработки, действует примерно сутки
 const TOKEN = 'vk1.a.9Kk6g5bhl8nNMRcnBDodjqiGAqWypxKR9i-DhYXdrRPVp-axeDWeWYePdjzXt7CyUWc7aThvRJB8isvdOK2ki29CNg3AK1mk9A7ZekGcttKRkeWJS4rIrr2VWfSAdo123bLWlGUM8sxCLtPdYfjeqp1H4nGUurSfSHkcOjAjR2QNPeXKo5c-HmRMmHoDaa8t';
 
+
 class Posts {
 
   posts = {};
@@ -12,14 +13,15 @@ class Posts {
   scrollContainer = document.querySelector('.scrollContainer');
   isLocalStorageRendered = false;
 
-  constructor() {
-    this.init();
-  }
-
   init() {
-    if (localStorage.counter && localStorage.counter !== 0) {
-      this.counter = localStorage.counter;
-      this.offset = localStorage.counter;
+    if (localStorage.getItem('counter')) {
+      this.counter = +localStorage.counter;
+      this.offset = +localStorage.counter;
+
+      console.log(this.tempCounter, this.counter, this.offset)
+      this.insertPosts();
+    } else {
+      addScript();
     }
 
     // Слушатель события скрола, вызвать функцию обработчик
@@ -51,7 +53,7 @@ class Posts {
     let result = res.response.items;
     let length = result.length;
 
-    for (let i = 0; i <length; i++ ) {
+    for (let i = 0; i < length; i++ ) {
       this.posts[i] = result[i].text;
     }
     this.insertPosts();
@@ -62,16 +64,17 @@ class Posts {
    */
   scrollContent() {
 
-      let elem = document.querySelector('.main__content');
-  let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;
+    let elem = document.querySelector('.main__content');
+    let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;
 
-  if (scrollBottom <= 300) {
-
+    if (scrollBottom <= 300) {
+      
+      console.log(scrollBottom, Object.keys(this.posts).length, this.tempCounter, this.offset, this.counter)
       if (Object.keys(this.posts).length > this.tempCounter + 1) {
         this.insertPosts();
       }
 
-      if (this.tempCounter >= 100 ){
+      if (this.tempCounter >= 100 || !this.tempCounter){
         console.log('Новый запрос');
         this.tempCounter = 0;
         this.offset = this.counter;
@@ -87,7 +90,7 @@ class Posts {
     let postsMarkup = '';
 
 // При первом входе
-    if (this.offset === 0) {
+    if (this.offset == 0) {
       console.log('Первичный вход')
       for (let i = 0; i < 5; i++) {
 
@@ -100,10 +103,10 @@ class Posts {
       this.isLocalStorageRendered = true;
     }
 
-    if (localStorage.length !== 0 && !this.isLocalStorageRendered ) {
+    if (localStorage.length != 0 && !this.isLocalStorageRendered ) {
       console.log('Рендер постов из localStorage');
 
-      let lng = localStorage.counter;
+      let lng = +localStorage.counter;
 
       for (let i = 0; i < lng; i++) {
         if (localStorage['vk' + i]) {
@@ -112,7 +115,7 @@ class Posts {
       }
       this.isLocalStorageRendered = true;
 
-    } else if (localStorage.length !== 0 && this.isLocalStorageRendered && this.offset !== 0) {
+    } else if (localStorage.length != 0 && this.isLocalStorageRendered && this.offset != 0 && Object.keys(this.posts).length) {
       console.log('Рендер новых постов при offset != 0 и отображенном localStorage')
 
       for (let i = 0; i < 5; i++) {
@@ -161,7 +164,7 @@ class Posts {
 }
 
 const posts = new Posts();
-addScript();
+posts.init();
 
 /**
  * Загрузить данные VK
