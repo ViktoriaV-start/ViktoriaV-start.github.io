@@ -1,7 +1,7 @@
 // ВТОРОЙ ВАРИАНТ - С КЛАССОМ
 
 // Это мой токен для разработки, действует примерно сутки
-const TOKEN = 'vk1.a.MsYxJnEPwXwzWltP-ARxb49Wgkph6v5u3g3gHEASMz6IlatnjpV_Z0kkniogJezBFsJFmPAl28CqeWq643JUiqqE00Uw1UAcL2eFJC5OB4LDJ2F3zSpELBlfl75saWQHyLzI4JnZZTJ5KiepsVaR8-mwopmlylP3CPLcH9SUislDl1as1vrl6Y6vBx4DZLJK';
+const TOKEN = 'vk1.a.9Kk6g5bhl8nNMRcnBDodjqiGAqWypxKR9i-DhYXdrRPVp-axeDWeWYePdjzXt7CyUWc7aThvRJB8isvdOK2ki29CNg3AK1mk9A7ZekGcttKRkeWJS4rIrr2VWfSAdo123bLWlGUM8sxCLtPdYfjeqp1H4nGUurSfSHkcOjAjR2QNPeXKo5c-HmRMmHoDaa8t';
 
 class Posts {
 
@@ -62,7 +62,10 @@ class Posts {
    */
   scrollContent() {
 
-    if (document.querySelector('.main__content').scrollTop + 500 >= document.querySelector('.main__content').scrollHeight) {
+      let elem = document.querySelector('.main__content');
+  let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;
+
+  if (scrollBottom <= 300) {
 
       if (Object.keys(this.posts).length > this.tempCounter + 1) {
         this.insertPosts();
