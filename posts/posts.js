@@ -1,7 +1,6 @@
 // ВТОРОЙ ВАРИАНТ - С КЛАССОМ
 
-// Это мой токен для разработки, действует примерно сутки
-const TOKEN = 'vk1.a.LpXZ1Bn6w5nfCUSIIra-QskQSKGzHmmH2V6F61k1HeyCwSJURmsorvKZULN9qMd3esvSTsH92dbWgP9lx_ObInWLVc73gckPzHupUMt5sudxzpSgKR6kxqY7fWiWNm_e7qITxJ4ZRD_cKYemMHI9-krgUGfBZF6tU_JwVi4o7xXdOlUSChfeTPTGLmEssAxW';
+const TOKEN = String(document.location.href).split('#')[1].split('&')[0].split('=')[1];
 
 class Posts {
 
