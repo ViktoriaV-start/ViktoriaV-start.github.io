@@ -1,26 +1,28 @@
-## E-commerce projects, different approaches and methods
-### Html, SCSS, JS
+### E-commerce projects, different approaches and methods: Html, SCSS, JS
 - https://viktoriav-start.github.io/cart/
 - https://viktoriav-start.github.io/Brand_shop/
 
-## TODO List: React, MobX:
+### TODO List: React, MobX
 - https://viktoriav-start.github.io/Todo/
 
-## TODO List: Js + Local Storage
+### TODO List: Js, Local Storage
 - https://viktoriav-start.github.io/todo/
 - https://viktoriav-start.github.io/w-todo/
 
-## Bouncing Balls: Js, Canvas
+### Bouncing Balls: Js, Canvas
 - https://viktoriav-start.github.io/balls
 
-## Meme Generator: Js, Canvas
+### Meme Generator: Js, Canvas
 - https://viktoriav-start.github.io/meme/
 
-## Tic-Tac: JS
+### Tic-Tac: JS
 - https://viktoriav-start.github.io/tic-tac/
 
-## Sorting Visualization: JS
+### Sorting Visualization: JS
 - https://viktoriav-start.github.io/sorting/
 
-## VK Posts: JS
+### VK Posts: JS
 - https://viktoriav-start.github.io/posts/
+
+### Guess number: JS
+- https://viktoriav-start.github.io/w-guess/
