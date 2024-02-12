@@ -1,0 +1,99 @@
+$main-color: rgb(34, 34, 34);
+$special-color: rgb(241, 109, 127);
+$special_dark: rgb(239, 91, 112);
+$dark-grey:  rgb(164, 164, 164);
+$light-grey: #eee;
+$ea-grey: #eaeaea;
+$e8-grey: #e8e8e8;
+$d6-grey: #d6d6d6;
+$f9-grey: #9f9f9f;
+$grey: #636363;
+$white: #fff;
+$border-light: 1px solid #eee;
+
+html,
+body {
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  min-width: 1600px;
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+}
+
+.invsbl {
+  visibility: hidden;
+}
+.display-none {
+  display: none;
+}
+
+@import 'header.scss';
+@import 'cart.scss';
+@import 'navigation.scss';
+@import 'filter.scss';
+@import 'intro.scss';
+@import 'poster.scss';
+@import 'promo.scss';
+@import 'offer.scss';
+@import 'communication.scss';
+@import 'footer.scss';
+@import 'arrivals.scss';
+@import 'catalog';
+@import 'alert';
+@import 'range-slider';
+@import 'checkout';
+
+.poster_margin {
+  margin-top: 98px;
+  margin-bottom: 100px;
+}
+
+.promo_mrg {
+  margin-bottom: 112px;
+}
+
+.offer-benefits__wrap_margin {
+  margin-bottom: 100px;
+}
+
+.footer-main_mrg {
+  margin-top: 109px;
+  margin-bottom: 85px;
+}
+
+.font_dark-grey-bold {
+  font-size: 14px;
+  color: rgb(111, 110, 110);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.font_dark-grey-light {
+  font-size: 14px;
+  color: rgb(111, 110, 110);
+}
+
+.heart_thin {
+  color: white;
+}
+
+.heart_pink {
+  color: $special-color;
+}
+
+.checkout__filter {
+  margin-top: 47px;
+  display: grid;
+  grid-template-columns: repeat(4, 22.75%);
+  grid-column-gap: 3%;
+  grid-row-gap: 3%;
+}
+
+.mrg-btm {
+  margin-bottom: 250px;
+}
+
+

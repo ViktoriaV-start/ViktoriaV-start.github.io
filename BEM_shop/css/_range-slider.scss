@@ -1,0 +1,42 @@
+.irs {
+
+  &--round &-from:before,
+  &--round &-to:before,
+  &--round &-single:before {
+    border-top-color: $special-color;
+  }
+
+  &--round {
+    width: 282px;
+  }
+
+  &-bar {
+    background-color: $special-color!important;
+    height: 6px!important;
+  }
+
+  &-line {
+    background-color: #f0eeef!important;
+    height: 6px!important;
+  }
+
+  &-min {
+    display: none;
+  }
+  &-max {
+    display: none;
+  }
+
+  &-handle {
+    background-color: $special-color!important;
+    border: none!important;
+    top: 32px!important;
+    width: 14px!important;
+    height: 14px!important;
+  }
+
+  &-from, &-to, &-single {
+    top: 4px!important;
+    background-color: $special-color!important;
+  }
+}

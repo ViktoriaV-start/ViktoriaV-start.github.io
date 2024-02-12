@@ -1,0 +1,25 @@
+.alert {
+  background: #f8d7da;
+  padding: 1em;
+  border-radius: 0.375rem;
+  margin-top: 1.5em;
+  position: relative;
+
+  &__close {
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    right: 0em;;
+    z-index: 2;
+    padding: 1.03rem 1rem;
+    cursor: pointer;
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    color: #000;
+    border: 0;
+    border-radius: 0.375rem;
+    opacity: .5;
+
+  }
+}
