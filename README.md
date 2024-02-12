@@ -1,5 +1,6 @@
 ### E-commerce projects, different approaches and methods: Html, SCSS, JS
 - https://viktoriav-start.github.io/cart/
+- https://viktoriav-start.github.io/BEM_shop/
 - https://viktoriav-start.github.io/Brand_shop/
 
 ### TODO List: React, MobX
