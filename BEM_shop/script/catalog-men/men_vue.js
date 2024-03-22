@@ -24,7 +24,6 @@ const App = {
             showCart: false,
             totalQuantity: 0,
             showQuantity: true
-
         }
     },
 

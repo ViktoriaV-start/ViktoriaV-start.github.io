@@ -40,6 +40,6 @@ export const CatalogItem = {
             </button>
         </div>
         </figure>
-    
+
     `
 };
