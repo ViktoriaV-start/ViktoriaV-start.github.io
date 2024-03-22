@@ -37,6 +37,7 @@
 	height: 34px;
 	border-radius: 4px;
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 .load-links__apple {
