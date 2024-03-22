@@ -1,0 +1,21 @@
+.intro {
+	width: 350px;
+	font-size: 31px;
+	font-weight: 700;
+	line-height: 39px;
+	color: #ffffff;
+	padding-top: 45px;
+	position: relative;
+	z-index: 5;
+}
+
+@media screen and (max-width: 970px) {
+	.intro {
+		width: 280px;
+		font-size: 27px;
+		line-height: 33px;
+		color: #ffffff;
+		margin: 0 auto;
+		top: -155px;
+	}
+}

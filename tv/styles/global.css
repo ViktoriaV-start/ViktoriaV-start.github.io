@@ -1,0 +1,56 @@
+html,
+body {
+	font-family: "Cera Pro", sans-serif;
+	
+}
+
+.main {
+	background: linear-gradient(94.99deg, #161616 37.3%, #5150F9 97.29%);
+	position: relative;
+	height: calc(100vh - 51px);
+}
+
+.phone-img {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+.phone-img-mob {
+	display: none;
+}
+
+.container {
+	max-width: 1446px;
+	margin: 0 auto;
+	padding: 0 46px;
+
+}
+
+@media screen and (max-width: 970px) {
+	.container {
+		min-width: 329px;
+		padding: 0;
+	}
+
+	.main {
+		height: auto;
+		background: linear-gradient(180deg, #5150F9 9.5%, #161616 89.5%);
+	}
+
+	.phone-img {
+		display: none;
+	}
+
+	.phone-img-mob {
+		display: block;
+		position: relative;
+		top: -53px;
+		z-index: 1;
+		width: 124%;
+		left: -39px;
+	aspect-ratio: 1;
+
+
+	}
+}
+

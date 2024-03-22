@@ -1,0 +1,41 @@
+.control {
+	display: flex;
+	column-gap: 28px;
+	margin-top: 75px;
+}
+
+.control__btn {
+	width: 147px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: center;
+	color: #ffffff;
+	padding: 9px 0;
+	background-color: transparent;
+	border: 1px solid white;
+	border-radius: 22px;
+	cursor: pointer;
+}
+
+.control__btn_sp {
+	background-color: #D40F7D;
+	border-color: #D40F7D;
+}
+
+@media screen and (max-width: 970px) {
+
+	.control {
+		justify-content: center;
+		column-gap: 23px;
+	}
+
+	.control__btn {
+		width: 130px;
+	}
+
+	.control__btn_sp {
+		background-color: transparent;
+		border-color: #ffffff;
+	}
+}

@@ -1,0 +1,113 @@
+.load-links {
+	margin-top: 15px;
+	position: relative;
+	z-index: 5;
+}
+
+.load-links__text {
+	width: 407px;
+	font-size: 17px;
+	font-weight: 300;
+	line-height: 25px;
+	color: #ffffff;
+}
+
+.load-links__heading {
+	text-align: center;
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 29px;
+}
+
+.load-links__cards {
+	display: flex;
+	column-gap: 20px;
+	margin-top: 44px;
+}
+
+.load-links__btns {
+	display: flex;
+	margin-top: 14px;
+	column-gap: 24px;
+}
+
+.load-links__btn {
+	width: 119px;
+	height: 34px;
+	border-radius: 4px;
+	background-repeat: no-repeat;
+}
+
+.load-links__apple {
+	background-image: url("../assets/icon-app-store.svg");
+}
+
+.load-links__google {
+	background-image: url("../assets/icon-google-play.svg");
+}
+
+.load-links__telekarta {
+	background-image: url("../assets/icon-telekarta.svg");
+}
+
+.load-links__single-btn {
+	display: flex;
+	justify-content: center;
+	margin-top: 14px;	
+}
+
+@media screen and (max-width: 970px) {
+
+	.load-links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		top: -150px;
+	}
+
+	.load-links__text {
+		width: 270px;
+		font-size: 17px;
+		line-height: 24px;
+		margin-left: -13px;
+	}
+
+	.load-links__cards {
+		flex-direction: column;
+	}
+
+	.load-links__apple {
+		background-image: url("../assets/icon-apple-mob.svg");
+	}
+	
+	.load-links__google {
+		background-image: url("../assets/icon-google-mob.svg");
+	}
+	
+	.load-links__telekarta {
+		background-image: url("../assets/icon-telekarta-mob.svg");
+	}
+
+	.load-links__btn {
+		width: 148px;
+		height: 43px;
+	}
+
+	.load-links__cards {
+		margin-top: 46px;
+		row-gap: 48px;
+	}
+
+	.load-links__btns {
+		flex-direction: column;
+		align-items: center;
+		margin-top: 28px;
+		row-gap: 29px;
+	}
+
+	.load-links__single-btn {
+		margin-top: 21px;
+	}
+
+}

@@ -1,0 +1,134 @@
+.devices {
+	position: relative;
+	z-index: 5;
+	margin-top: 80px;
+}
+
+.devices__title {
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 29px;
+	color: #ffffff;
+}
+
+.devices__variants {
+	display: flex;
+	column-gap: 32px;
+	margin-top: 33px;
+}
+
+.devices__item {
+	width: 190px;
+	padding-left: 3px;
+}
+
+.devices__item:nth-child(3) {
+	padding-left: 5px;
+}
+
+.devices__item:last-child {
+	padding-left: 15px;
+	width: auto;
+}
+
+.devices__instruction {
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 23px;
+	padding-top: 17px;
+}
+
+.devices__instruction_sp {
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 23px;
+}
+
+.devices__tv {
+	width: 200px;
+	height: 35px;
+	border-radius: 4px;
+	background-repeat: no-repeat;
+}
+
+.devices__android-tv {
+	background-image: url("../assets/devices-app/icon-android-tv.svg");
+}
+
+.devices__apple-tv {
+	background-image: url("../assets/devices-app/icon-apple-tv.svg");
+}
+
+.devices__lg-tv {
+	background-image: url("../assets/devices-app/icon-lg-tv.svg");
+}
+
+.devices__samsung-tv {
+	background-image: url("../assets/devices-app/icon-samsung-tv.svg");
+}
+
+@media screen and (max-width: 970px) {
+
+	.devices {
+		margin-top: 83px;
+	}
+
+	.devices__title {
+	font-size: 24px;
+	width: 283px;
+	text-align: center;
+	margin: -152px auto 0;
+	}
+
+	.devices__variants {
+		flex-direction: column;
+		align-items: center;
+		margin-top: 53px;
+		row-gap: 58px;
+	}
+
+	.devices__item {
+		display: flex;
+		flex-direction: column;
+		width: 205px;
+	}
+
+	.devices__tv {
+		width: 135px;
+		align-self: center;
+	}
+	.devices__android-tv {
+		background-image: url("../assets/devices-mob/icon-android-tv-mob.svg");
+	}
+
+	.devices__apple-tv {
+		background-image: url("../assets/devices-mob/icon-apple-tv-mob.svg");
+		margin-bottom: 9px;
+	}
+
+	.devices__lg-tv {
+		background-image: url("../assets/devices-mob/icon-lg-tv-mob.svg");
+		width: 72px;
+		margin-bottom: 13px;
+	}
+
+	.devices__samsung-tv {
+		background-image: url("../assets/devices-mob/icon-samsung-tv-mob.svg");
+		width: 210px;
+		margin-bottom: 22px;
+	}
+
+	.devices__instruction {
+		padding-top: 8px;
+}
+
+	.devices__item:nth-child(3) {
+		padding-left: 3px;
+	}
+
+	.devices__item:last-child {
+		width: 229px;
+	}
+
+}
