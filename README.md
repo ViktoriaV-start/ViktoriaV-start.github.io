@@ -1,3 +1,6 @@
+## Portfolio
+- https://viktoriav-start.github.io/vv/
+
 ### E-commerce projects, different approaches and methods: Html, SCSS, JS
 - https://viktoriav-start.github.io/cart/
 - https://viktoriav-start.github.io/BEM_shop/
@@ -21,9 +24,6 @@
 
 ### Sorting Visualization: JS
 - https://viktoriav-start.github.io/sorting/
-
-### VK Posts: JS
-- https://viktoriav-start.github.io/posts/
 
 ### Guess number: JS
 - https://viktoriav-start.github.io/w-guess/
