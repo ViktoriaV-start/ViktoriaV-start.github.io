@@ -1,5 +1,5 @@
 ## Portfolio
-- https://viktoriav-start.github.io/vv/
+- https://viktoriav-start.github.io/ViktoriaV/
 
 ### E-commerce projects, different approaches and methods: Html, SCSS, JS
 - https://viktoriav-start.github.io/cart/
